@@ -99,7 +99,8 @@ main {
 }
 .help-block {
     position: absolute;
-    bottom: 10px;
+    bottom: 4px;
+    height: 30px;
     left: 0;
     color: red;
     font-size: 12px;
@@ -325,7 +326,6 @@ button:hover {
         line-height: 26px;
     }
     .inputs {
-        margin-bottom: 30px;
         margin-right: 0;
     }
     .input-wrapper .placeholder {
