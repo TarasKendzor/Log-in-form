@@ -1,0 +1,10 @@
+/* Montserrat Regular */
+@font-face {
+    font-family: 'Montserrat Regular';
+    font-display: swap;
+    src: url('./fonts/Montserrat-Regular.eot'); /* IE9 Compat Modes */
+    src: url('./fonts/Montserrat-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('./fonts/Montserrat-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+         url('./fonts/Montserrat-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+        }
+  
