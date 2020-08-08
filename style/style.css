@@ -14,6 +14,9 @@ html {
 
 .wrapper {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100vh;
     min-height: 800px;
@@ -97,6 +100,11 @@ html {
 .has-error .inputs {
     outline: 1px solid red;
 }
+.safari-br .has-error .inputs {
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0px 0px 0px 1px red inset;
+}
 .help-block {
     position: absolute;
     bottom: 4px;
@@ -107,6 +115,11 @@ html {
 }
 .inputs.not-valid {
     outline: 1px solid red;
+}
+.safari-br .inputs.not-valid {
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0px 0px 0px 1px red inset;
 }
 .inputs::placeholder {
     color: #8a969a;
@@ -177,6 +190,7 @@ button:hover {
     justify-content: center;
 }
 #sign-up-form .user-name-wrapper {
+    display: -ms-flexbox;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -293,6 +307,35 @@ button:hover {
 
 /* Main page end */
 
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .first-name-logo {
+        right: 8px;
+    }
+    #sign-up-form .user-name-wrapper {
+        width: 100%;
+    }
+    .user-name-wrapper .input-wrapper {
+        width: auto;
+    }
+    .first-name {
+        margin-right: 22px;
+    }
+    #user-first-name {
+        margin-right: 0;
+    }
+    .inputs {
+        outline-width: 1px !important;
+    }
+    .inputs:focus {
+        outline: 1px solid #8a969a !important;
+    }
+    .ie-10 #sign-up-form .user-name-wrapper input {
+        width: 100%;
+    }
+    .ie-10 .first-name {
+        margin-right: 13px;
+    }
+}
 /* Media start */
 
 @media screen and (max-width: 700px) {

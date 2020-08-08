@@ -7,11 +7,66 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.ico">
     <link rel="stylesheet" href="/style/fonts.css">
     <link rel="stylesheet" href="/style/style.css">
-    <script src="/scripts/index.js" defer></script>
+    <script>
+        var BrowserDetect = {
+            init: function () {
+                this.browser = this.searchString(this.dataBrowser) || "Other";
+                this.version = this.searchVersion(navigator.userAgent) || this.searchVersion(navigator.appVersion) || "Unknown";
+            },
+            searchString: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var dataString = data[i].string;
+                    this.versionSearchString = data[i].subString;
+
+                    if (dataString.indexOf(data[i].subString) !== -1) {
+                        return data[i].identity;
+                    }
+                }
+            },
+            searchVersion: function (dataString) {
+                var index = dataString.indexOf(this.versionSearchString);
+                if (index === -1) {
+                    return;
+                }
+
+                var rv = dataString.indexOf("rv:");
+                if (this.versionSearchString === "Trident" && rv !== -1) {
+                    return parseFloat(dataString.substring(rv + 3));
+                } else {
+                    return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
+                }
+            },
+
+            dataBrowser: [
+                { string: navigator.userAgent, subString: "Edge", identity: "MS Edge" },
+                { string: navigator.userAgent, subString: "MSIE", identity: "Explorer" },
+                { string: navigator.userAgent, subString: "Trident", identity: "Explorer" },
+                { string: navigator.userAgent, subString: "Firefox", identity: "Firefox" },
+                { string: navigator.userAgent, subString: "Opera", identity: "Opera" },
+                { string: navigator.userAgent, subString: "OPR", identity: "Opera" },
+
+                { string: navigator.userAgent, subString: "Chrome", identity: "Chrome" },
+                { string: navigator.userAgent, subString: "Safari", identity: "Safari" }
+            ]
+        };
+
+        BrowserDetect.init();
+        var head = document.getElementsByTagName('head')[0];
+        var fileref = document.createElement('script')
+        fileref.setAttribute("type", "text/javascript")
+
+        var bv = BrowserDetect.browser;
+        if (bv == "Explorer") {
+            fileref.setAttribute("src", "/scripts/index-ie.js")
+        } else {
+            fileref.setAttribute("src", "/scripts/index.js")
+        }
+        head.appendChild(fileref)
+    </script>
     <title>Log In</title>
 </head>
 
-<body>
+<body id="body">
     <main class="wrapper">
         <section class="modal-section log-in-section">
             <div class="modal-section-inner log-in-section__content">
@@ -52,6 +107,40 @@
             </div>
         </section>
     </main>
+    <script>
+        function detectIEEdge() {
+            var ua = window.navigator.userAgent;
+
+            var msie = ua.indexOf('MSIE ');
+            if (msie > 0) {
+                // IE 10 or older => return version number
+                return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+            }
+
+            var trident = ua.indexOf('Trident/');
+            if (trident > 0) {
+                // IE 11 => return version number
+                var rv = ua.indexOf('rv:');
+                return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+            }
+
+            var edge = ua.indexOf('Edge/');
+            if (edge > 0) {
+                // Edge => return version number
+                return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+            }
+
+            // other browser
+            return false;
+        }
+        if (bv == "Safari") {
+            body.classList.add('safari-br');
+        }
+        var body = document.getElementById('body');
+        if (detectIEEdge() == '10') {
+            body.classList.add('ie-10')
+        }
+    </script>
 </body>
 
 </html>

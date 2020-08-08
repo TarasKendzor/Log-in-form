@@ -1,4 +1,3 @@
-
 'use strict'
 
 //  Input placeholder logic  start. //
@@ -35,7 +34,6 @@ function viewPasswordLogin() {
     if (passwordInputLogin.type == 'password') {
         passwordInputLogin.type = 'text';
         passStatusLogin.classList.add('is-active');
-
     }
     else {
         passwordInputLogin.type = 'password';
@@ -59,7 +57,7 @@ function storeData() {
     sessionStorage.setItem('lastName', lastName.value);
     sessionStorage.setItem('email', email.value);
     sessionStorage.setItem('password', password.value);
-    getLogInData();
+
     document.getElementById("sign-up-form").submit();
 }
 
@@ -163,7 +161,7 @@ if (signUpSection) {
         event.preventDefault();
     });
 }
-//   Sign up form validation & sumbit start . //
+//   Sign up form validation & sumbit end . //
 
 
 
@@ -184,9 +182,7 @@ if (logInSection) {
         let emailError = document.getElementById('email-error');
         let passError = document.getElementById('password-error');
 
-        console.log(loginPass.value, userPass, '8888')
         if (loginEmail.value == userEmail && loginPass.value == userPass) {
-            console.log('-----')
             form.submit();
         } else {
             if (loginEmail.value !== userEmail) {
