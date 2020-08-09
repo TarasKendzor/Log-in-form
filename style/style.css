@@ -92,6 +92,8 @@ html {
     box-sizing: border-box;
     padding: 6px 15px;
     font-size: 20px;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
 }
 .inputs:focus {
     border: 1px solid #8a969a;
@@ -100,11 +102,6 @@ html {
 .has-error .inputs {
     outline: 1px solid red;
 }
-/* .safari-br .has-error .inputs {
-    outline: none;
-    border-radius: 6px;
-    box-shadow: 0px 0px 0px 1px red inset;
-} */
 .help-block {
     position: absolute;
     bottom: 4px;
@@ -116,11 +113,7 @@ html {
 .inputs.not-valid {
     outline: 1px solid red;
 }
-/* .safari-br .inputs.not-valid {
-    outline: none;
-    border-radius: 6px;
-    box-shadow: 0px 0px 0px 1px red inset;
-} */
+
 .inputs::placeholder {
     color: #8a969a;
 }
@@ -206,6 +199,7 @@ button:hover {
 /* Sign-up section  end*/
 
 /* Log in section  start*/
+
 .log-in-section #log-in-link {
     background-color: #0ea087;
     color: #e8f7f3;
@@ -307,6 +301,8 @@ button:hover {
 
 /* Main page end */
 
+/* IE 11-10 dop styles start. */
+
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     .first-name-logo {
         right: 8px;
@@ -336,6 +332,9 @@ button:hover {
         margin-right: 13px;
     }
 }
+
+/* IE 11-10 dop styles end. */
+
 /* Media start */
 
 @media screen and (max-width: 700px) {
